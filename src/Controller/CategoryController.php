@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -15,5 +16,9 @@ final class CategoryController extends AbstractController
             'controller_name' => 'CategoryController',
         ]);
     }
-
+    #[Route('/category/new', name: 'app_category_new')]
+    public function addCategory(EntityManagerInterface $entityManager):Response
+    {
+        return $this->render('category/new.html.twihg');
+    }
 }
