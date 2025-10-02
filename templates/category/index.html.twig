@@ -1,65 +1,75 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}categories{% endblock %}
+{% block title %}Catégories{% endblock %}
 
 {% block body %}
-<div class = "container">
-<br>
-<h1> Catégories</h1>
-{% include 'layout/_flash_message.html.twig' %}
-<br>
-<table class="table">
-<tr>
-<th>id</th>
-<th>nom de la catégorie</th>
-<th>actions</th>
-</tr>
-{% for category in categories %}
-<tr>
-    <td>{{ category.id }}</td>
-     <td>{{ category.name }}</td>
-     <td>
-     <a href="{{path('app_category_update',{'id':category.id})}}"
-     </td>
-     </tr>
-     {% else %}
-     <p>Aucune catégorie à afficher</p>
-     {% endfor %}
-     </table>
-     <a class="btn btn-outline-success" href="{{ path ('app_category_new')}}">Nouvelle catégorie</a>
+ {% include 'layouts/_flash_message.html.twig' %}
+<div class="container">
+    <br>
+    <h1>Catégories</h1>
+    <br>
 
+    {% if categories is not empty %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nom de la catégorie</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for category in categories %}
+                    <tr>
+                        <td>{{ category.id }}</td>
+                        <td>{{ category.name }}</td>
+                        <td>
+                            <a class="btn btn-sm btn-primary" href="{{ path('app_category_update', {'id': category.id}) }}">
+                                Modifier
+                            </a>
+                            <a onclick="return confirm('Voulez vous vraiment supprimer cette catégorie?')"
+                             class="btn btn-danger" href="{{ path('app_category_delete', {'id': category.id}) }}">
 
+                            Supprimer</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Aucune catégorie à afficher.</p>
+    {% endif %}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-     
-     </div>
-
+    <a class="btn btn-outline-success" href="{{ path('app_category_new') }}">
+        Nouvelle catégorie
+    </a>
+</div>
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
