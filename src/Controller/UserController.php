@@ -40,4 +40,14 @@ final class UserController extends AbstractController
         return $this->redirectToRoute('app_user');
 
     }
+    #[Route('/admin/user/{id}/delete', name: 'app_user_delete')]
+    public function editorRoleDelete(User $user,EntityManagerInterface
+    $entityManager):Response
+    {
+     $entityManager->remove($user);
+     $entityManager->flush();
+
+     $this->addFlash('danger','L\'utilisateur a été supprimé');
+     return $this->redirectToRoute('app_user');
+    }
 }

@@ -1,0 +1,4 @@
+{{ form_start(form) }}
+<label for=""Nom du produit : </label>
+    {{ form_widget(form.name,{'attre':{'class':'form form-control','placeholder':"nom"}}) }}
+    {{ form_erros(form.name) }}

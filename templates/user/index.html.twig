@@ -26,13 +26,13 @@
         <td>
         {% if ("ROLE_ADMIN" in user.roles) == false %}
             {% if ("ROLE_EDITOR" in user.roles) == false %}
-            <a onclick="return confirm('Voulez-vous affect)
-            <span class="text-primary">administrateur</span>
-        {% elseif ("ROLE_EDITOR" in user.roles) %}
-            <span class="text-success">editeur</span>
-            {% else %}
-            <span class="text-secondary">client</span>
+            <a onclick="return confirm('Voulez-vous vraiment affecter le rôle éditeur à l\'utilisateur ?')" class="btn btn-online-primary" href="{{path('app_user_add_editor_role',{'id':user.id}) }}">Ajouter le rôle Editeur</a>
+           {% else %}
+           <a onclick="return confirm('Voulez-vous vraiment retirer le rôle éditeur à l\'utilisateur ?')" class="btn btn btn-danger" href="{{ path('app_user_remove_editor-role',{'id':user.id}) }}">Retirer le rôle Editeur</a> 
             {% endif %}
+            {% endif %}
+       <a onclick= "return confirm('Voulez-vous vraiment supprimer cet utilisateur ?')"
+       class="btn btn-danger" href="{{ path('app_user_delete',{'id':user.id}) }}">Supprimer</a>
         </td>
         </tr>
         {% else %}
